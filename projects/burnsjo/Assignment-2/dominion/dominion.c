@@ -797,7 +797,7 @@ int tribute(struct gameState *state, int nextPlayer, int tributeRevealedCards[])
             state->playedCardCount++;
             tributeRevealedCards[1] = -1;
         }
-        for (i = 0; i <= 2; i ++) {
+        for (i = 0; i < 2; i ++) {
             if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
                 state->coins += 2;
             }
