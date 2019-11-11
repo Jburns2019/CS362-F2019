@@ -683,7 +683,6 @@ int baronHelper(struct gameState *state, int choice1, int currentPlayer) {
                   }
                   if (supplyCount(estate, state) > 0) {
                       gainCard(estate, state, 0, currentPlayer);
-                      state->supplyCount[estate]--;//Decrement estates
                       if (supplyCount(estate, state) == 0) {
                           isGameOver(state);
                       }
@@ -698,7 +697,6 @@ int baronHelper(struct gameState *state, int choice1, int currentPlayer) {
     else {
         if (supplyCount(estate, state) > 0) {
             gainCard(estate, state, 0, currentPlayer);//Gain an estate
-            state->supplyCount[estate]--;//Decrement Estates
             if (supplyCount(estate, state) == 0) {
                 isGameOver(state);
             }
