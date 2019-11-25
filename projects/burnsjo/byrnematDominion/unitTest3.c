@@ -28,8 +28,9 @@ int main() {
     memcpy(pre, post, sizeof(struct gameState));
     
     //Check to see if the overview of the function is okay.
-    tributeHelper(post, nextPlayer, currentPlayer, tributeRevealedCards);
+    playTribute(post, nextPlayer, tributeRevealedCards, currentPlayer);
     assert(post->numActions - 2, pre->numActions, "PASSED: The numOfActions was incremented correctly.", "\n\tERROR: The numOfActions was not incremented by 2.\n");
+    printf("%d, %d\n", post->numActions, pre->numActions);
     
     // set the game again.
     initializeGame(numOfPlayers, k, numOfPlayers, post);
@@ -38,7 +39,7 @@ int main() {
     //Change some variables to gain access to a new if statement.
     post->deckCount[nextPlayer] = 1;
     post->discardCount[nextPlayer] = 0;
-    tributeHelper(post, nextPlayer, currentPlayer, tributeRevealedCards);
+    playTribute(post, nextPlayer, tributeRevealedCards, currentPlayer);
     assert(post->deckCount[nextPlayer], 0, "PASSED: The deck count was decremented correctly for the next player.", "\n\tERROR: The deck count was not decremented check the first if block.\n");
     
     // set the game again.
@@ -48,7 +49,7 @@ int main() {
     //Change some variables to gain access to a new if statement.
     post->deckCount[nextPlayer] = 0;
     post->discardCount[nextPlayer] = 1;
-    tributeHelper(post, nextPlayer, currentPlayer, tributeRevealedCards);
+    playTribute(post, nextPlayer, tributeRevealedCards, currentPlayer);
     assert(post->discardCount[nextPlayer], 0, "PASSED: The discard count was decremented correctly for the next player.", "\n\tERROR: The discard count was not decremented check the first if block.\n");
     
     // set the game again.
@@ -58,7 +59,7 @@ int main() {
     //change the variables to the state needed to get into where the first bug occurs.
     post->deckCount[nextPlayer] = 0;
     post->discardCount[nextPlayer] = 0;
-    tributeHelper(post, nextPlayer, currentPlayer, tributeRevealedCards);
+    playTribute(post, nextPlayer, tributeRevealedCards, currentPlayer);
     printf("Check the output to see if No cards to reveal was mentioned. If it was this PASSED, if it was not check that the last statement shows if DEBUG not DEBUG + 1\n");
     
     // set the game again.
@@ -70,7 +71,7 @@ int main() {
     nextPlayer = 1;
     post->deckCount[nextPlayer] = 1;
     post->discardCount[nextPlayer] = 0;
-    tributeHelper(post, nextPlayer, currentPlayer, tributeRevealedCards);
+    playTribute(post, nextPlayer, tributeRevealedCards, currentPlayer);
     assert(post->handCount[currentPlayer] - 2, pre->handCount[currentPlayer], "PASSED: Only the currentPlayer drew a card.", "\n\tERROR: The current player did not draw 2 cards, check for error 2.\n");
     
     //Let the debugger know that testing is complete.

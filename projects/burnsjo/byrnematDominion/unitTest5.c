@@ -27,7 +27,7 @@ int main() {
     struct gameState *pre = newGame();
     memcpy(pre, post, sizeof(struct gameState));
     
-    int failure = mineHelper(currentPlayer, choice1, choice2, post, handPos);
+    int failure = playMine(post, currentPlayer, choice1, choice2, handPos);
      assert(failure, -1, "PASSED: The card was appropriately not played as the cards selected were of the same value.", "\n\tERROR: The card was played even though it should not have.\n");
     
     //Set the game again.
@@ -38,7 +38,7 @@ int main() {
     post->hand[currentPlayer][1] = mine;
     post->hand[currentPlayer][choice1] = copper;
     choice2 = silver;
-    failure = mineHelper(currentPlayer, choice1, choice2, post, handPos);
+    failure = playMine(post, currentPlayer, choice1, choice2, handPos);
     assert(failure, 0, "PASSED: The smallest value choice one can have is correct.", "\n\tERROR: Check that the smallest value you can have is copper not copper+1\n");
     
     //Set the game again.
@@ -48,7 +48,7 @@ int main() {
     //Set variables to get more coverage.
     post->hand[currentPlayer][choice1] = copper+1;
     choice2 = silver;
-    failure = mineHelper(currentPlayer, choice1, choice2, post, handPos);
+    failure = playMine(post, currentPlayer, choice1, choice2, handPos);
     assert(failure, 0, "\n\tERROR: Check that the smallest value you can have is copper not copper+1\n", "PASSED: The smallest value choice one can have is correct.");
     
     
@@ -60,7 +60,7 @@ int main() {
     currentPlayer = 1;
     post->hand[currentPlayer][choice1] = silver;
     choice2 = gold;
-    mineHelper(currentPlayer, choice1, choice2, post, handPos);
+    playMine(post, currentPlayer, choice1, choice2, handPos);
     assert(post->hand[currentPlayer][choice1], pre->hand[currentPlayer][choice1], "\n\tERROR: The previous player is having their card swapped instead of the currentPlayer.\n", "PASSED: The current player is having their deck changed.");
     
     printf("Testing For The Mine Function Is Completed.\n");

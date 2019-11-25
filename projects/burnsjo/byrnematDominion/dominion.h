@@ -8,7 +8,7 @@
 
 #define MAX_PLAYERS 4
 
-#define DEBUG 1
+#define DEBUG 0
 
 /* http://dominion.diehrstraits.com has card texts */
 /* http://dominion.isotropic.org has other stuff */
@@ -127,5 +127,11 @@ int scoreFor(int player, struct gameState *state);
 int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
+
+int playBaron(struct gameState *state, int choice1, int currentPlayer);
+int playMine(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos);
+int playMinion(struct gameState *state, int handPos, int currentPlayer, int choice1, int choice2);
+int playAmbassador(struct gameState *state, int choice1, int choice2, int handPos, int currentPlayer);
+int playTribute(struct gameState *state, int nextPlayer, int *tributeRevealedCards, int currentPlayer);
 
 #endif

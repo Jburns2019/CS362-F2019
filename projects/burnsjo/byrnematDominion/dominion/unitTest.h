@@ -4,7 +4,10 @@
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "rngs.h"
+#include <time.h>
 
 #define DEBUG 1
 #define NOISY_TEST 1

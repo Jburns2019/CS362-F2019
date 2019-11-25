@@ -26,9 +26,9 @@ int main() {
     initializeGame(numOfPlayers, k, numOfPlayers, post);
     struct gameState *pre = newGame();
     memcpy(pre, post, sizeof(struct gameState));
-     
+    
      // Do a glossery check to ensure basic functionality supports playing.
-    minionHelper(post, handPos, currentPlayer, choice1, choice2);
+    playMinion(post, handPos, currentPlayer, choice1, choice2);
      assert(post->numActions - 1, pre->numActions, "PASSED: The number of actions was incremented correctly.", "\n\tERROR: The num of actions was not incremented by 1 check for bug 1.\n");
      
      // set the game again.
@@ -37,7 +37,7 @@ int main() {
     
     //change choice1 to 1 so that an ifstatement can be breached.
     choice1 = 1;
-    minionHelper(post, handPos, currentPlayer, choice1, choice2);
+     playMinion(post, handPos, currentPlayer, choice1, choice2);
      assert(post->coins - 2, pre->coins, "PASSED: The number of coins was incremented correctly.", "\n\tERROR: The num of coins was not incremented by 2 check inside the first if statement.\n");
      
     initializeGame(numOfPlayers, k, numOfPlayers, post);
@@ -47,8 +47,9 @@ int main() {
     choice1 = 0;
     choice2 = 1;
     post->whoseTurn = currentPlayer;
-    minionHelper(post, handPos, currentPlayer, choice1, choice2);
+     playMinion(post, handPos, currentPlayer, choice1, choice2);
     assert(post->playedCardCount - 1, pre->playedCardCount, "PASSED: The number of played cards was decremented correctly.", "\n\tERROR: The num of played cards was not decremented check for bug 2 in while loop.\n");
+    printf("%d, %d\n", post->playedCardCount, pre->playedCardCount);
      
     //Tell the debugger that the testing is done.
     printf("Test For The Minion Function Is Completed.\n");

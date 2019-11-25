@@ -26,7 +26,7 @@ int main() {
     memcpy(pre, post, sizeof(struct gameState));
     
     post->supplyCount[estate] = 1;
-    baronHelper(post, choice1, currentPlayer);
+    playBaron(post, choice1, currentPlayer);
     assert(post->numBuys - 1, pre->numBuys, "PASSED: The numOfBuys was incremented correctly.", "\n\tERROR: The numOfBuys was not incremented.\n");
     
     //Set up the game again for another test.
@@ -35,7 +35,7 @@ int main() {
     
     //change choice1 to 1 so that an if statement can be breached. Checking for bug2, if it occurs then the function fails and the coverage is not obtained. 
     choice1 = 1;
-    int failure = baronHelper(post, choice1, currentPlayer);
+    int failure = playBaron(post, choice1, currentPlayer);
     assert(failure, -1, "\n\tERROR: The while loop is not 0.\n", "PASSED: The while loop is set to 0.");
     
     //Set up the game again for another test.
@@ -44,8 +44,9 @@ int main() {
     
     //change the hand that is checked first so that the if statement runs.
     post->hand[currentPlayer][0] = estate;
-    baronHelper(post, choice1, currentPlayer);
+    playBaron(post, choice1, currentPlayer);
     assert(post->coins - 4, pre->coins, "PASSED: The coins were incremented correctly if there is an estate card and choice1 is 1.", "\n\tERROR: The coins were not incremented by 4 properly.\n");
+    printf("%d, %d\n", post->coins, pre->coins);
     
     //Set up the game again for another test.
     initializeGame(numOfPlayers, k, numOfPlayers, post);
@@ -55,8 +56,9 @@ int main() {
     post->handCount[currentPlayer] = 0;
     post->supplyCount[estate] = 1;
     pre->supplyCount[estate] = 1;
-    baronHelper(post, choice1, currentPlayer);
+    playBaron(post, choice1, currentPlayer);
     assert(post->supplyCount[estate] + 1, pre->supplyCount[estate], "PASSED: The number of estate cards gets decremented properly.", "\n\tERROR: The number of estate cards does not get decremented.\n");
+    printf("%d, %d\n", post->supplyCount[estate], pre->supplyCount[estate]);
     
     printf("Test For The Baron Function Is Completed.\n");
     

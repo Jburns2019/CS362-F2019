@@ -28,7 +28,7 @@ int main() {
     memcpy(pre, post, sizeof(struct gameState));
     
     //Luckily for me there are not too many if statements so maximum coverage is achieved with only one call. This means I have to test both assertions thoug.
-    ambassadorHelper(choice1, choice2, handPos, post, currentPlayer);
+    playAmbassador(post, choice1, choice2, handPos, currentPlayer);
      assert(post->supplyCount[post->hand[currentPlayer][choice1]] - choice2, pre->supplyCount[pre->hand[currentPlayer][choice1]], "PASSED: The supply count of the given card was increased properly.", "\n\tERROR: The supply count of the given card was not increased properly. Check for bug 2.\n");
      printf("Check the output. If player 1 had their cards revealed PASSED. If another player had their cards revealed then ERROR.\n");     
     
