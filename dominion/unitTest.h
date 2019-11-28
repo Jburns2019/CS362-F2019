@@ -12,6 +12,6 @@
 #define DEBUG 1
 #define NOISY_TEST 1
 
-void assert(int cond1, int cond2, char *tMess, char *fMess);
+void assert(int conditional, char *tMess, char *fMess);
 
 #endif
